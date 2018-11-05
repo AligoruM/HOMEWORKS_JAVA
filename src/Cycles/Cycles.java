@@ -2,7 +2,7 @@ package Cycles;
 
 public class Cycles {
 
-    public void printRectangle(int n, int m){
+    static void printRectangle(int n, int m){
         for(int i = 0; i<n;i++){
             for(int j = 0; j<m; j++){
                 System.out.print('#');
@@ -11,7 +11,7 @@ public class Cycles {
         }
     }
 
-    public void printO(){
+    static void printO(){
         for(int i = 0; i<7; i++){
             for(int j = 0; j<7; j++){
                 if(i == 0 || i == 6 || j == 0 || j == 6)
@@ -23,7 +23,7 @@ public class Cycles {
         }
     }
 
-    public void printZ(){
+    static void printZ(){
         for(int i = 0; i<7; i++){
             for(int j = 0; j<7; j++){
                 if(i == 0 || i == 6 || i + j == 6)
@@ -35,7 +35,7 @@ public class Cycles {
         }
     }
 
-    public void printSome(){
+    static void printSome(){
         for(int i = 0; i<7; i++){
             for(int j = 0; j<7; j++){
                 if(i == 0 || i == 6 || i + j == 6 || i == j || j == 0 || j == 6)
@@ -48,14 +48,12 @@ public class Cycles {
     }
 
     public static void main(String[] args) {
-        Cycles cycles = new Cycles();
-
-        cycles.printRectangle(10,10);// #3.a
+        printRectangle(10,10);// #3.a
         System.out.println();
-        cycles.printO();//3.b
+        printO();//3.b
         System.out.println();
-        cycles.printZ();//3.b
+        printZ();//3.b
         System.out.println();
-        cycles.printSome();//3.b
+        printSome();//3.b
     }
 }

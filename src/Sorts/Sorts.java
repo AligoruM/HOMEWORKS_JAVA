@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Sorts {
 
-    void bubbleSort(int[] arr) {
+    static void bubbleSort(int[] arr) {
         int n = arr.length;
         int temp = 0;
         for (int i = 0; i < n; i++) {
@@ -19,13 +19,12 @@ public class Sorts {
         }
     }
 
-    void selectionSort(int[] arr) {
+    public static void selectionSort(int[] arr) {
         int n = arr.length;
-        for (int i = 0; i < n-1; i++)
-        {
+        for (int i = 0; i < n-1; i++) {
             int min_idx = i;
             for (int j = i+1; j < n; j++)
-                if (arr[j] < arr[min_idx])
+                if (arr[j] > arr[min_idx])
                     min_idx = j;
             int temp = arr[min_idx];
             arr[min_idx] = arr[i];
@@ -33,7 +32,7 @@ public class Sorts {
         }
     }
 
-    void printArr(int[] arr){
+    static void printArr(int[] arr){
         for (int i:arr) {
             System.out.print(i+" ");
         }
@@ -46,9 +45,8 @@ public class Sorts {
             array[i]= -5000 + rnd.nextInt(10000);
         }
 
-        Sorts srt = new Sorts();
         long startTime = System.nanoTime();
-        srt.bubbleSort(array);
+        bubbleSort(array);
         long estimatedTime = System.nanoTime() - startTime;
         System.out.println("Bubble sort time:\t" + estimatedTime);
 
@@ -56,7 +54,7 @@ public class Sorts {
             array[i]= -5000 + rnd.nextInt(10000);
         }
         startTime = System.nanoTime();
-        srt.selectionSort(array);
+        selectionSort(array);
         estimatedTime = System.nanoTime() - startTime;
         System.out.println("Select. sort time:\t" + estimatedTime);
 
