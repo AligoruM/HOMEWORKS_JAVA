@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Lists {
     private static Random rnd = new Random();
-    private static final int NUMBERS_OF_TESTS = 100;
-    private static final int SIZE = 1000;
+    public static final int NUMBERS_OF_TESTS = 100;
+    public static final int SIZE = 1000000;
 
-    static <E extends List> long instanceTest(E list) {
+    static public <E extends List> long instanceTest(E list) {
         long startTime, estimatedTime;
         startTime = System.nanoTime();
         for (int i = 0; i < SIZE; i++) {
@@ -17,7 +17,7 @@ public class Lists {
         return estimatedTime;
     }
 
-    static <E extends List> long addTest(E list) {
+    static public <E extends List> long addTest(E list) {
         long startTime, estimatedTime = 0;
         for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
@@ -27,7 +27,7 @@ public class Lists {
         return estimatedTime / NUMBERS_OF_TESTS;
     }
 
-    static <E extends List> long removeTest(E list) {
+    static public <E extends List> long removeTest(E list) {
         long startTime, estimatedTime = 0;
         for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
@@ -37,7 +37,7 @@ public class Lists {
         return estimatedTime / NUMBERS_OF_TESTS;
     }
 
-    static <E extends List> long indexOfTest(E list) {
+    static public <E extends List> long indexOfTest(E list) {
         long startTime, estimatedTime = 0;
         for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();

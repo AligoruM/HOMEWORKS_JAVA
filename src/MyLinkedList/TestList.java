@@ -1,113 +1,101 @@
 package MyLinkedList;
 
-import Shapes.MyPoint;
+import ComparisonOfCollection.Lists;
 
-import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
+import static ComparisonOfCollection.Lists.SIZE;
+import static ComparisonOfCollection.Lists.NUMBERS_OF_TESTS;
+
 public class TestList {
-    public static void main(String[] args) {
-        LinkedList<MyPoint> test2 = new LinkedList<MyPoint>();
-        for (int i = 0; i < 100; i++)
-            test2.add(new MyPoint(i, i));
-        System.out.println(Arrays.toString(test2.toArray()));
-        /*
-        Будет дублирование кода в тесте, лень было писать функции для красоты
-         */
-        /*MyLinkedList<MyPoint> test1 = new MyLinkedList<MyPoint>();
-        LinkedList<MyPoint> test2 = new LinkedList<MyPoint>();
-        for (int i = 0; i < 1000000; i++) {
-            test1.add(new MyPoint(i, i));
-            test2.add(new MyPoint(i, i));
+    private static Random rnd = new Random();
+    static <E extends List, T extends ILinkedList> void instanceTest(E list1, T list2) {
+        System.out.println("Instance test time for LinkedList:" + Lists.instanceTest(list1));
+        long startTime, estimatedTime;
+        startTime = System.nanoTime();
+        for (int i = 0; i < SIZE; i++) {
+            list2.add(-100000 + rnd.nextInt(300000));
         }
-        Random rnd = new Random(38745763);
+        estimatedTime = System.nanoTime() - startTime;
+        System.out.println("Instance test time for MyLinkedTest:" + estimatedTime);
+    }
+
+    static <E extends List, T extends ILinkedList> void addTest(E list1, T list2) {
+        System.out.println("Add by index test time for LinkedList:" + Lists.addTest(list1));
         long startTime, estimatedTime = 0;
-
-        //-----------------------------------------------------------//
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
-            for (MyPoint j : test1) {
+            list2.add(rnd.nextInt(list2.size()), i);
+            estimatedTime += (System.nanoTime() - startTime);
+        }
+        System.out.println("Add by index test time for MyLinkedTest:" + estimatedTime/NUMBERS_OF_TESTS);
+    }
+
+    static <E extends List, T extends ILinkedList> void indexOfTest(E list1, T list2) {
+        System.out.println("indexOf test time for LinkedList:" + Lists.indexOfTest(list1));
+        long startTime, estimatedTime = 0;
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
+            startTime = System.nanoTime();
+            list2.indexOf(-100000+rnd.nextInt(300000));
+            estimatedTime += (System.nanoTime() - startTime);
+        }
+        System.out.println("indexOf test time for MyLinkedList:" + estimatedTime/NUMBERS_OF_TESTS);
+    }
+
+    static <E extends List, T extends ILinkedList> void roundTest(E list1, T list2) {
+        long startTime, estimatedTime = 0;
+        for (int i = 0; i <NUMBERS_OF_TESTS ; i++) {
+            startTime = System.nanoTime();
+            for (Object j: list1) {
             }
             estimatedTime += (System.nanoTime() - startTime);
         }
-        System.out.println("MyList round time:\t" + estimatedTime/100);
-
-        estimatedTime=0;
-        for (int i = 0; i < 100; i++) {
+        System.out.println("round test time for LinkedList:" + estimatedTime / NUMBERS_OF_TESTS);
+        estimatedTime = 0;
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
-            for (MyPoint j : test2) {
+            for (Object j: list2) {
             }
             estimatedTime += (System.nanoTime() - startTime);
         }
-        System.out.println("JavaList round time:\t" + estimatedTime/100);
+        System.out.println("round test time for MyLinkedList:" + estimatedTime / NUMBERS_OF_TESTS);
+    }
 
-        //-----------------------------------------------------------//
-
-        estimatedTime=0;
-        for (int i = 0; i < 100; i++) {
-            int rand = rnd.nextInt(1000000);
+    static <E extends List, T extends ILinkedList> void removeTest(E list1, T list2) {
+        System.out.println("Remove by index test time for LinkedList:" + Lists.removeTest(list1));
+        long startTime, estimatedTime = 0;
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
-            test1.indexOf(new MyPoint(rand, rand));
+            list2.remove(rnd.nextInt(list2.size()));
             estimatedTime += (System.nanoTime() - startTime);
         }
-        System.out.println("MyList indexOf time:\t" + estimatedTime/100); //
+        System.out.println("Remove by index test time for MyLinkedList:" + estimatedTime/NUMBERS_OF_TESTS);
+    }
 
-        estimatedTime=0;
-        for (int i = 0; i < 100; i++) {
-            int rand = rnd.nextInt(1000000);
-            startTime = System.nanoTime();
-            test2.indexOf(new MyPoint(rand, rand));
-            estimatedTime += (System.nanoTime() - startTime);
-        }
-        System.out.println("JavaList indexOf time:\t" + estimatedTime/100);
-        //-----------------------------------------------------------//
+    public static void main(String[] args) {
+        LinkedList<Double> list1 = new LinkedList<>();
+        MyLinkedList<Double> list2 = new MyLinkedList<Double>();
 
-        estimatedTime=0;
-        for (int i = 0; i < 100; i++) {
-            int rand = rnd.nextInt(1000000);
-            startTime = System.nanoTime();
-            test1.add(rand, new MyPoint(i, i));
-            estimatedTime += (System.nanoTime() - startTime);
-        }
-        System.out.println("MyList add by index time:\t" + estimatedTime/100); //
+        instanceTest(list1, list2);
+        addTest(list1, list2);
+        indexOfTest(list1, list2);
+        roundTest(list1, list2);
+        removeTest(list1, list2);
 
-        estimatedTime=0;
-        for (int i = 0; i < 100; i++) {
-            int rand = rnd.nextInt(1000000);
-            startTime = System.nanoTime();
-            test2.add(rand, new MyPoint(i, i));
-            estimatedTime += (System.nanoTime() - startTime);
-        }
-        System.out.println("JavaList add by index time:\t" + estimatedTime/100);
-        //-----------------------------------------------------------//
-        estimatedTime=0;
-        for (int i = 0; i < 100; i++) {
-            int rand = rnd.nextInt(990000);
-            startTime = System.nanoTime();
-            test1.remove(rand);
-            estimatedTime += (System.nanoTime() - startTime);
-        }
-        System.out.println("MyList remove by index time:\t" + estimatedTime/100); //
-
-        estimatedTime=0;
-        for (int i = 0; i < 100; i++) {
-            int rand = rnd.nextInt(990000);
-            startTime = System.nanoTime();
-            test2.remove(rand);
-            estimatedTime += (System.nanoTime() - startTime);
-        }
-        System.out.println("JavaList remove by index time:\t" + estimatedTime/100);*/
-        //-----------------------------------------------------------//
         /*
-            MyList round time:	            7767237  | видимо, из-за более простой реализации, работает чуточку быстрее
-            JavaList round time:	        9428691  | по-другому объяснить не могу
-            MyList indexOf time:	        3570612     | аналогично, не смотяр на то, что обычный список двусвязный,
-            JavaList indexOf time:	        4870185     | нет возможности определить, в какой половине находится искомое
-            MyList add by index time:	    9247731  | уже начинает играть роль наличие ссылки на предыдущий элемент у
-            JavaList add by index time:	    3106548  | ноды, намного быстрее добирается до 2ой половины списка
-            MyList remove by index time:	7753994     | полностью аналогичная ситуация, описана выше
-            JavaList remove by index time:	3029884     |
+            Instance test time for LinkedList:          136935460   | Не нашёл причины, почему работает настолько
+            Instance test time for MyLinkedTest:        232762748   | медленнее...
+            Add by index test time for LinkedList:      2706385     | Из-за "двусвязности" обычного списка, работает
+            Add by index test time for MyLinkedTest:    4534241     | заметно быстрее.
+            indexOf test time for LinkedList:           2052117     | Видимо, из-за более простой реализации, работает
+            indexOf test time for MyLinkedList:         1007743     | в 2-3 раза быстрее, по-другому объяснить не могу.
+            round test time for LinkedList:             8616130     | Аналогично.
+            round test time for MyLinkedList:           3727064     |
+            Remove by index test time for LinkedList:   2292435     | Играет роль двусвязности обычного списка, из-за
+            Remove by index test time for MyLinkedList: 3435151     | чего элементы во второй половине удаляются быстрее
+
         */
     }
 }
