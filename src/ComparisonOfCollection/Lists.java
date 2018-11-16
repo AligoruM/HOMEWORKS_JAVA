@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Lists {
     private static Random rnd = new Random();
-    private static final int NUMBERSOFTESTS = 100;
+    private static final int NUMBERS_OF_TESTS = 100;
     private static final int SIZE = 1000;
 
     static <E extends List> long instanceTest(E list) {
@@ -19,32 +19,32 @@ public class Lists {
 
     static <E extends List> long addTest(E list) {
         long startTime, estimatedTime = 0;
-        for (int i = 0; i < NUMBERSOFTESTS; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
             list.add(rnd.nextInt(list.size()), i);
             estimatedTime += (System.nanoTime() - startTime);
         }
-        return estimatedTime / NUMBERSOFTESTS;
+        return estimatedTime / NUMBERS_OF_TESTS;
     }
 
     static <E extends List> long removeTest(E list) {
         long startTime, estimatedTime = 0;
-        for (int i = 0; i < NUMBERSOFTESTS; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
             list.remove(rnd.nextInt(list.size()));
             estimatedTime += (System.nanoTime() - startTime);
         }
-        return estimatedTime / NUMBERSOFTESTS;
+        return estimatedTime / NUMBERS_OF_TESTS;
     }
 
     static <E extends List> long indexOfTest(E list) {
         long startTime, estimatedTime = 0;
-        for (int i = 0; i < NUMBERSOFTESTS; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
             list.indexOf(-100000+rnd.nextInt(300000));
             estimatedTime += (System.nanoTime() - startTime);
         }
-        return estimatedTime / NUMBERSOFTESTS;
+        return estimatedTime / NUMBERS_OF_TESTS;
     }
 
     public static void main(String[] args) {

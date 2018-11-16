@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Maps {
     private static Random rnd = new Random();
-    private static final int NUMBERSOFTESTS = 1000;
+    private static final int NUMBERS_OF_TESTS = 1000;
     private static final int SIZE = 10000;
 
     static <E extends Map> long instanceTest(E map) {
@@ -20,22 +20,22 @@ public class Maps {
 
     static <E extends Map> long addTest(E map) {
         long startTime, estimatedTime = 0;
-        for (int i = 0; i < NUMBERSOFTESTS; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
             map.put(-SIZE + rnd.nextInt(SIZE*3), i);
             estimatedTime += (System.nanoTime() - startTime);
         }
-        return estimatedTime / NUMBERSOFTESTS;
+        return estimatedTime / NUMBERS_OF_TESTS;
     }
 
     static <E extends Map> long removeTest(E map) {
         long startTime, estimatedTime = 0;
-        for (int i = 0; i < NUMBERSOFTESTS; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
             map.remove(-SIZE + rnd.nextInt(SIZE*3));
             estimatedTime += (System.nanoTime() - startTime);
         }
-        return estimatedTime / NUMBERSOFTESTS;
+        return estimatedTime / NUMBERS_OF_TESTS;
     }
     public static void main(String[] args) {
         HashMap<Integer, Double> t1 = new HashMap<>();

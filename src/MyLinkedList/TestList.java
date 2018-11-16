@@ -2,16 +2,20 @@ package MyLinkedList;
 
 import Shapes.MyPoint;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class TestList {
     public static void main(String[] args) {
-
+        LinkedList<MyPoint> test2 = new LinkedList<MyPoint>();
+        for (int i = 0; i < 100; i++)
+            test2.add(new MyPoint(i, i));
+        System.out.println(Arrays.toString(test2.toArray()));
         /*
         Будет дублирование кода в тесте, лень было писать функции для красоты
          */
-        MyLinkedList<MyPoint> test1 = new MyLinkedList<MyPoint>();
+        /*MyLinkedList<MyPoint> test1 = new MyLinkedList<MyPoint>();
         LinkedList<MyPoint> test2 = new LinkedList<MyPoint>();
         for (int i = 0; i < 1000000; i++) {
             test1.add(new MyPoint(i, i));
@@ -93,7 +97,7 @@ public class TestList {
             test2.remove(rand);
             estimatedTime += (System.nanoTime() - startTime);
         }
-        System.out.println("JavaList remove by index time:\t" + estimatedTime/100);
+        System.out.println("JavaList remove by index time:\t" + estimatedTime/100);*/
         //-----------------------------------------------------------//
         /*
             MyList round time:	            7767237  | видимо, из-за более простой реализации, работает чуточку быстрее

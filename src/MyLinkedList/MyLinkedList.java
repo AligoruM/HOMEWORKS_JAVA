@@ -169,17 +169,17 @@ public class  MyLinkedList <E> implements ILinkedList<E> {
     public int size() {
         return size;
     }
-    //Из-за type erasure так и не придумал, как создать массив типа E, не теряя данных.
-    /*@Override
-    public E[] toArray(Class<E> clazz) {
-        E[] arr = (E[]) Array.newInstance(clazz, size);
+
+    @Override
+    public E[] toArray() {
+        E[] arr = (E[]) new Object[size];
         Node<E> x = first;
         for(int i=0; i<size;i++){
-            arr[i]=first.item;
+            arr[i]=x.item;
             x = x.next;
         }
         return arr;
-    }*/
+    }
     @Override
     public String toString(){
         Iterator<E> it = iterator();

@@ -9,6 +9,6 @@ public interface  ILinkedList <E> extends Iterable<E> {
     public void remove(int index);
     public E set(int index, E elem);
     public int size();
-    //public E[] toArray();
+    public E[] toArray();
     public String toString();
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Sets {
     private static Random rnd = new Random();
-    private static final int NUMBERSOFTESTS = 100;
+    private static final int NUMBERS_OF_TESTS = 100;
     private static final int SIZE = 100000;
 
     static <E extends Set> long instanceTest(E set) {
@@ -21,22 +21,22 @@ public class Sets {
 
     static <E extends Set> long addTest(E set) {
         long startTime, estimatedTime = 0;
-        for (int i = 0; i < NUMBERSOFTESTS; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
             set.add(-SIZE + rnd.nextInt(set.size()));
             estimatedTime += (System.nanoTime() - startTime);
         }
-        return estimatedTime / NUMBERSOFTESTS;
+        return estimatedTime / NUMBERS_OF_TESTS;
     }
 
     static <E extends Set> long removeTest(E set) {
         long startTime, estimatedTime = 0;
-        for (int i = 0; i < NUMBERSOFTESTS; i++) {
+        for (int i = 0; i < NUMBERS_OF_TESTS; i++) {
             startTime = System.nanoTime();
             set.remove(rnd.nextInt(set.size()));
             estimatedTime += (System.nanoTime() - startTime);
         }
-        return estimatedTime / NUMBERSOFTESTS;
+        return estimatedTime / NUMBERS_OF_TESTS;
     }
 
     public static void main(String[] args) {
